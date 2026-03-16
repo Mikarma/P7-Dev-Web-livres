@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -6,8 +7,9 @@ const booksRoutes = require("./routes/books");
 const userRoutes = require("./routes/user");
 const app = express();
 
+
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://Mikarma:supporttechnique22@cluster0.ysrlpce.mongodb.net/test2?appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch((error) => console.log('Connexion à MongoDB échouée !', error));
 
