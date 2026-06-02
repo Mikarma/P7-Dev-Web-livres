@@ -34,7 +34,6 @@ export async function getAuthenticatedUser() {
     }
     return { authenticated: true, user: { userId, token } };
   } catch (err) {
-    console.error('getAuthenticatedUser, Something Went Wrong', err);
     return defaultReturnObject;
   }
 }
@@ -49,7 +48,6 @@ export async function getBooks() {
     const books = formatBooks(response.data);
     return books;
   } catch (err) {
-    console.error(err);
     return [];
   }
 }
@@ -69,7 +67,6 @@ export async function getBook(id) {
     }
     return book;
   } catch (err) {
-    console.error(err);
     return null;
   }
 }
@@ -82,7 +79,6 @@ export async function getBestRatedBooks() {
     });
     return formatBooks(response.data);
   } catch (e) {
-    console.error(e);
     return [];
   }
 }
@@ -95,7 +91,6 @@ export async function deleteBook(id) {
     });
     return true;
   } catch (err) {
-    console.error(err);
     return false;
   }
 }
@@ -117,7 +112,6 @@ export async function rateBook(id, userId, rating) {
     book.id = book._id || book.id;
     return book;
   } catch (e) {
-    console.error(e);
     return e.message;
   }
 }
@@ -150,7 +144,6 @@ export async function addBook(data) {
       },
     });
   } catch (err) {
-    console.error(err);
     return { error: true, message: err.message };
   }
 }
@@ -166,7 +159,6 @@ export async function updateBook(data, id) {
     year: data.year,
     genre: data.genre,
   };
-  console.log(data.file[0]);
   if (data.file[0]) {
     newData = new FormData();
     newData.append('book', JSON.stringify(book));
@@ -186,7 +178,6 @@ export async function updateBook(data, id) {
     });
     return newBook;
   } catch (err) {
-    console.error(err);
     return { error: true, message: err.message };
   }
 }
